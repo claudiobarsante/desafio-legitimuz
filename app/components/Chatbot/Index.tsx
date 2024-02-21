@@ -1,22 +1,10 @@
 import React from 'react';
-
+import Image from 'next/image';
+import Header from './Header';
 function Chatbot() {
 	return (
-		<div className='flex flex-col w-full max-w-sm border border-gray-200 rounded-lg overflow-hidden'>
-			<header className='flex items-center p-4 border-b'>
-				<div className='flex items-center space-x-4'>
-					<span className='relative flex shrink-0 overflow-hidden rounded-full w-8 h-8'>
-						<img
-							alt='Logo'
-							height='40'
-							src='/logo.png'
-							style={{ aspectRatio: '40/40', objectFit: 'cover' }}
-							width='40'
-						/>
-					</span>
-					<h1 className='text-xl font-bold'>Mateus Mendes</h1>
-				</div>
-			</header>
+		<main className='flex flex-col w-full max-w-sm border border-gray-200 rounded-lg overflow-hidden'>
+			<Header username='Claudio sdfsdf' imagePath='/logo.png' />
 			<div className='flex flex-col p-4 overflow-hidden'>
 				<div className='flex flex-col gap-4'>
 					<div className='rounded-lg bg-gray-100 p-4 text-sm max-w-[85%] self-start'>
@@ -27,7 +15,7 @@ function Chatbot() {
 					</div>
 				</div>
 				<div className='flex items-center gap-4 my-4'>
-					<img
+					<Image
 						alt='Avatar'
 						className='rounded-full'
 						height='30'
@@ -68,7 +56,7 @@ function Chatbot() {
 					</button>
 				</form>
 			</div>
-		</div>
+		</main>
 	);
 }
 

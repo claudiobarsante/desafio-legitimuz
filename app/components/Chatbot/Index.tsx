@@ -1,10 +1,12 @@
 import React from 'react';
 import Image from 'next/image';
-import Header from './Header';
-function Chatbot() {
+import Header, { HeaderProps } from './Header';
+
+type ChatbotProps = HeaderProps;
+function Chatbot({ username, imagePath }: ChatbotProps) {
 	return (
 		<main className='flex flex-col w-full max-w-sm border border-gray-200 rounded-lg overflow-hidden'>
-			<Header username='Claudio sdfsdf' imagePath='/logo.png' />
+			<Header username={username} imagePath={imagePath} />
 			<div className='flex flex-col p-4 overflow-hidden'>
 				<div className='flex flex-col gap-4'>
 					<div className='rounded-lg bg-gray-100 p-4 text-sm max-w-[85%] self-start'>

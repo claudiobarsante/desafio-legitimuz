@@ -1,10 +1,20 @@
 'use client';
 import { useState } from 'react';
-import Chatbot from './components/Chatbot';
+import Chatbot, { Message } from './components/Chatbot';
 import SelectUser from './components/SelectUser';
+import Form from './components/Form';
 
+const INITIAL_MESSAGES: Message[] = [
+	{
+		content: 'Esse aqui é um exemplo de Chatbot, aqui onde você inciará o seu teste.',
+		type: 'Recebida',
+	},
+	{ content: 'Siga as instruções detalhadas no Notion oficial e boa sorte!', type: 'Recebida' },
+];
 export default function Home() {
 	const [selectedOption, setSelectedOption] = useState('');
+	const [messages, setMessages] = useState<Message[]>(INITIAL_MESSAGES);
+	const [message, setMessage] = useState('');
 
 	const handleUserChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 		const index = event.target.selectedIndex;
@@ -16,6 +26,10 @@ export default function Home() {
 	const handleReset = () => {
 		setSelectedOption('');
 	};
+
+	const handleTypedMessage = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setMessage(event.target.value);
+	};
 	const USER_IMAGE: Record<string, string> = {
 		'User 1': '/logo.png',
 		'User 2': '/logo2.png',
@@ -24,8 +38,15 @@ export default function Home() {
 	};
 
 	return (
-		<div className='flex flex-col gap-2'>
-			<Chatbot username={selectedOption} imagePath={USER_IMAGE[selectedOption]} />
+		<>
+			<main className='flex flex-col w-full max-w-sm border border-gray-200 rounded-lg overflow-hidden'>
+				<Chatbot
+					username={selectedOption}
+					imagePath={USER_IMAGE[selectedOption]}
+					messages={messages}
+				/>
+				<Form />
+			</main>
 			<SelectUser selectedUser={selectedOption} handleUserChange={handleUserChange} />
 			<button
 				type='button'
@@ -34,6 +55,6 @@ export default function Home() {
 			>
 				Resetar
 			</button>
-		</div>
+		</>
 	);
 }

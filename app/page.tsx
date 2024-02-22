@@ -1,5 +1,5 @@
 'use client';
-import { FormEvent, useState } from 'react';
+import { useState } from 'react';
 import Chatbot, { Message } from './components/Chatbot';
 import SelectUser from './components/SelectUser';
 import Form from './components/Form';

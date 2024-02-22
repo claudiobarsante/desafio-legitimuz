@@ -6,8 +6,12 @@ import Enviada from './Enviada';
 type ChatMessageProps = {
 	imagePath?: string;
 } & Message;
+
+type MessageType = {
+	[type: string]: React.JSX.Element;
+};
 function ChatMessage({ content, type, imagePath = '' }: ChatMessageProps) {
-	const MESSAGE = {
+	const MESSAGE: MessageType = {
 		Recebida: <Recebida content={content} />,
 		Enviada: <Enviada content={content} imagePath={imagePath} />,
 	};

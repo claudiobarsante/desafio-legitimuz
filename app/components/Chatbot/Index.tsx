@@ -1,8 +1,7 @@
-import React from 'react';
-import Image from 'next/image';
-import Header, { HeaderProps } from './Header';
-import Form from '../Form';
+'use client';
 import ChatMessage from '../ChatMessage';
+import Header, { HeaderProps } from './Header';
+
 export type Message = {
 	content: string;
 	type: 'Recebida' | 'Enviada';

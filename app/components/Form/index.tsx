@@ -1,11 +1,22 @@
-import React, { useState } from 'react';
-
-function Form() {
+type FormProps = {
+	message: string;
+	handleTypedMessage: (event: React.ChangeEvent<HTMLInputElement>) => void;
+	handleFormSubmit: () => void;
+};
+function Form({ message, handleTypedMessage, handleFormSubmit }: FormProps) {
 	return (
-		<form className='flex items-center gap-4 border-t p-4'>
+		<form
+			className='flex items-center gap-4 border-t p-4'
+			onSubmit={e => {
+				e.preventDefault();
+				handleFormSubmit();
+			}}
+		>
 			<input
 				className='flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 flex-1 min-w-0'
 				placeholder='Digite sua mensagem aqui...'
+				value={message}
+				onChange={e => handleTypedMessage(e)}
 			/>
 			<button
 				className='inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-full w-10 h-10'

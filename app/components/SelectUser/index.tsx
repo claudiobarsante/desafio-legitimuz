@@ -1,5 +1,3 @@
-import React from 'react';
-
 type SelectUserProps = {
 	selectedUser: string;
 	handleUserChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;

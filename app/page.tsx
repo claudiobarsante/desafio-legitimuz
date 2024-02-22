@@ -13,6 +13,7 @@ const INITIAL_MESSAGES: Message[] = [
 ];
 export default function Home() {
 	const [selectedOption, setSelectedOption] = useState('');
+	const [selectedUser, setSelectedUser] = useState('');
 	const [messages, setMessages] = useState<Message[]>(INITIAL_MESSAGES);
 	const [userMessage, setUserMessage] = useState('');
 
@@ -20,11 +21,14 @@ export default function Home() {
 		const index = event.target.selectedIndex;
 		const selectedOptionText = (event.target.options[index] as HTMLOptionElement).text;
 
-		setSelectedOption(selectedOptionText);
+		setSelectedUser(selectedOptionText);
+		setSelectedOption(event.target.value);
+		setMessages(INITIAL_MESSAGES);
 	};
 
 	const handleReset = () => {
 		setSelectedOption('');
+		setSelectedUser('');
 		setMessages(INITIAL_MESSAGES);
 	};
 
@@ -39,6 +43,8 @@ export default function Home() {
 	};
 
 	const handleFormSubmit = () => {
+		if (userMessage === '' || selectedOption === '') return;
+
 		setMessages([...messages, { content: userMessage, type: 'Enviada' }]);
 		setUserMessage('');
 	};
@@ -46,11 +52,7 @@ export default function Home() {
 	return (
 		<>
 			<main className='flex flex-col w-full max-w-sm border border-gray-200 rounded-lg overflow-hidden'>
-				<Chatbot
-					username={selectedOption}
-					imagePath={USER_IMAGE[selectedOption]}
-					messages={messages}
-				/>
+				<Chatbot username={selectedUser} imagePath={USER_IMAGE[selectedUser]} messages={messages} />
 				<Form
 					message={userMessage}
 					handleTypedMessage={handleTypedMessage}

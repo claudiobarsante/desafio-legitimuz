@@ -1,4 +1,3 @@
-'use client';
 import ChatMessage from '../ChatMessage';
 import Header, { HeaderProps } from './Header';
 
